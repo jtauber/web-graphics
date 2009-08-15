@@ -53,4 +53,5 @@ def gradient(func, DATA):
                 b = linear_gradient(start[2], end[2], initial_offset, offset)(f)
                 return r, g, b
             initial_offset = offset
+        return end[0] / 255.0, end[1] / 255.0, end[2] / 255.0
     return gradient_function

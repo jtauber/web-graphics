@@ -36,12 +36,17 @@ write_png("example5.png", 50, 80, gradient(LINEAR, [
     (1.00, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
 ]))
 
+# showing gradient not going all the way to 1.0
+write_png("example6.png", 50, 80, gradient(LINEAR, [
+    (0.5, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
+]))
+
 
 # hsv example
 
 from colorsys import hsv_to_rgb
 
-write_png("example6.png", 200, 40, gradient(LINEAR, [
+write_png("example7.png", 200, 40, gradient(LINEAR, [
     (0.5, hsv_to_rgb(0.55, 0.4, 122), hsv_to_rgb(0.55, 0.4, 161)),
     (1.0, hsv_to_rgb(0.55, 0.4, 143), hsv_to_rgb(0.55, 0.4, 175)),
 ]))
@@ -49,6 +54,10 @@ write_png("example6.png", 200, 40, gradient(LINEAR, [
 
 # radial gradient
 
-write_png("example7.png", 400, 400, gradient(RADIAL(0.5, 0.2), [
+write_png("example8.png", 400, 400, gradient(RADIAL(0.5, 0.5), [
     (1.0, (0xCC, 0xCC, 0xCC), (0x00, 0x00, 0x00)),
+]))
+
+write_png("example9.png", 400, 400, gradient(RADIAL(0.5, 0.0), [
+    (0.5, (0xCC, 0xCC, 0xCC), (0x00, 0x00, 0x00)),
 ]))
