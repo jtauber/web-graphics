@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from gradient import write_png, gradient
+from graphics import write_png, gradient
 
 ## EXAMPLES
 
