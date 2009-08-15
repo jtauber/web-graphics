@@ -37,8 +37,11 @@ def write_png(filename, width, height, rgb_func):
 def linear_gradient(start_value, stop_value, start_offset=0.0, stop_offset=1.0):
     return lambda offset: (start_value + ((offset - start_offset) / (stop_offset - start_offset) * (stop_value - start_value))) / 255.0
 
-def LINEAR(x, y):
+def LINEAR_Y(x, y):
     return y
+
+def LINEAR_X(x, y):
+    return x
 
 def RADIAL(center_x, center_y):
     return lambda x, y: (x - center_x) ** 2 + (y - center_y) ** 2

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from graphics import write_png, gradient, LINEAR, RADIAL, NO_NOISE, GAUSSIAN
+from graphics import write_png, gradient, LINEAR_X, LINEAR_Y, RADIAL, NO_NOISE, GAUSSIAN
 
 ## EXAMPLES
 
@@ -8,45 +8,44 @@ from graphics import write_png, gradient, LINEAR, RADIAL, NO_NOISE, GAUSSIAN
 # so you can more easily see the result
 
 # body background from jtauber.com and quisition.com
-write_png("example1.png", 50, 143, gradient(LINEAR, NO_NOISE, [
+write_png("example1.png", 50, 143, gradient(LINEAR_Y, NO_NOISE, [
     (1.0, (0xA1, 0xA1, 0xA1), (0xDF, 0xDF, 0xDF)),
 ]))
 
 # header background similar to that on jtauber.com
-write_png("example2.png", 50, 90, gradient(LINEAR, NO_NOISE, [
+write_png("example2.png", 50, 90, gradient(LINEAR_Y, NO_NOISE, [
     (0.43, (0xBF, 0x94, 0xC0), (0x4C, 0x26, 0x4C)), # top
     (0.85, (0x4C, 0x26, 0x4C), (0x27, 0x13, 0x27)), # bottom
     (1.0,  (0x66, 0x66, 0x66), (0xFF, 0xFF, 0xFF)), # shadow
 ]))
 
 # original header gradient from pinax
-write_png("example3.png", 50, 80, gradient(LINEAR, NO_NOISE, [
+write_png("example3.png", 50, 80, gradient(LINEAR_Y, NO_NOISE, [
     (0.72, (0x00, 0x26, 0x4D), (0x00, 0x40, 0x80)),
     (1.0,  (0x00, 0x40, 0x80), (0x00, 0x6C, 0xCF)), # glow
 ]))
 
 # form input background from pinax
-write_png("example4.png", 50, 25, gradient(LINEAR, NO_NOISE, [
+write_png("example4.png", 50, 25, gradient(LINEAR_Y, NO_NOISE, [
     (0.33, (0xDD, 0xDD, 0xDD), (0xF3, 0xF3, 0xF3)), # top-shadow
     (1.0,  (0xF3, 0xF3, 0xF3), (0xF3, 0xF3, 0xF3)),
 ]))
 
 # current header gradient from pinax
-write_png("example5.png", 50, 80, gradient(LINEAR, NO_NOISE, [
+write_png("example5.png", 50, 80, gradient(LINEAR_Y, NO_NOISE, [
     (1.00, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
 ]))
 
 # showing gradient not going all the way to 1.0
-write_png("example6.png", 50, 80, gradient(LINEAR, NO_NOISE, [
+write_png("example6.png", 50, 80, gradient(LINEAR_Y, NO_NOISE, [
     (0.5, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
 ]))
-
 
 # hsv example
 
 from colorsys import hsv_to_rgb
 
-write_png("example7.png", 200, 40, gradient(LINEAR, NO_NOISE, [
+write_png("example7.png", 200, 40, gradient(LINEAR_Y, NO_NOISE, [
     (0.5, hsv_to_rgb(0.55, 0.4, 122), hsv_to_rgb(0.55, 0.4, 161)),
     (1.0, hsv_to_rgb(0.55, 0.4, 143), hsv_to_rgb(0.55, 0.4, 175)),
 ]))
@@ -64,7 +63,8 @@ write_png("example9.png", 400, 400, gradient(RADIAL(0.5, 0.0), NO_NOISE, [
 
 
 # gaussian noise
-write_png("example10.png", 400, 400, gradient(LINEAR, GAUSSIAN(0.01), [
+
+write_png("example10.png", 400, 400, gradient(LINEAR_Y, GAUSSIAN(0.01), [
     (1.00, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
 ]))
 
@@ -72,3 +72,8 @@ write_png("example11.png", 960, 200, gradient(RADIAL(0.5, 0.0), GAUSSIAN(0.01), 
     (0.8, (0x22, 0x22, 0x22), (0x00, 0x00, 0x00)),
 ]))
 
+# horizontal gradient
+write_png("example12.png", 5000, 50, gradient(LINEAR_X, GAUSSIAN(0.005), [
+    (0.40, (0x00, 0x00, 0x00), (0x00, 0x00, 0x00)),
+    (0.59, (0x00, 0x00, 0x00), (0x1B, 0x1C, 0x1E)),
+]))
