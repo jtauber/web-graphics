@@ -47,3 +47,18 @@ def gradient(DATA):
                 return r, g, b
             initial_offset = offset
     return gradient_function
+
+def radial_gradient(center_x, center_y, DATA):
+    def gradient_function(x, y):
+        # distance from centerpoint
+        d = (x - center_x) ** 2 + (y - center_y) ** 2
+        
+        initial_offset = 0.0
+        for offset, start, end, in DATA:
+            if d < offset:
+                r = linear_gradient(start[0], end[0], initial_offset, offset)(d)
+                g = linear_gradient(start[1], end[1], initial_offset, offset)(d)
+                b = linear_gradient(start[2], end[2], initial_offset, offset)(d)
+                return r, g, b
+            initial_offset = offset
+    return gradient_function

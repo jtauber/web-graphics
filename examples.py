@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from graphics import write_png, gradient
+from graphics import write_png, gradient, radial_gradient
 
 ## EXAMPLES
 
@@ -44,4 +44,11 @@ from colorsys import hsv_to_rgb
 write_png("example6.png", 200, 40, gradient([
     (0.5, hsv_to_rgb(0.55, 0.4, 122), hsv_to_rgb(0.55, 0.4, 161)),
     (1.0, hsv_to_rgb(0.55, 0.4, 143), hsv_to_rgb(0.55, 0.4, 175)),
+]))
+
+
+# radial gradient
+
+write_png("example7.png", 400, 400, radial_gradient(0.5, 0.2, [
+    (1.0, (0xCC, 0xCC, 0xCC), (0x00, 0x00, 0x00)),
 ]))
