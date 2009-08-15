@@ -1,6 +1,7 @@
 import zlib
 import struct
 import array
+import random
 
 def output_chunk(out, chunk_type, data):
     out.write(struct.pack("!I", len(data)))
@@ -42,16 +43,25 @@ def LINEAR(x, y):
 def RADIAL(center_x, center_y):
     return lambda x, y: (x - center_x) ** 2 + (y - center_y) ** 2
 
-def gradient(func, DATA):
+def NO_NOISE(r, g, b):
+    return r, g, b
+
+def GAUSSIAN(sigma):
+    def add_noise(r, g, b):
+        d = random.gauss(0, sigma)
+        return r + d, g + d, b + d
+    return add_noise
+
+def gradient(value_func, noise_func, DATA):
     def gradient_function(x, y):
         initial_offset = 0.0
-        f = func(x, y)
+        v = value_func(x, y)
         for offset, start, end in DATA:
-            if f < offset:
-                r = linear_gradient(start[0], end[0], initial_offset, offset)(f)
-                g = linear_gradient(start[1], end[1], initial_offset, offset)(f)
-                b = linear_gradient(start[2], end[2], initial_offset, offset)(f)
-                return r, g, b
+            if v < offset:
+                r = linear_gradient(start[0], end[0], initial_offset, offset)(v)
+                g = linear_gradient(start[1], end[1], initial_offset, offset)(v)
+                b = linear_gradient(start[2], end[2], initial_offset, offset)(v)
+                return noise_func(r, g, b)
             initial_offset = offset
-        return end[0] / 255.0, end[1] / 255.0, end[2] / 255.0
+        return noise_func(end[0] / 255.0, end[1] / 255.0, end[2] / 255.0)
     return gradient_function
