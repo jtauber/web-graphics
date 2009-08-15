@@ -35,3 +35,13 @@ write_png("example4.png", 50, 25, gradient([
 write_png("example5.png", 50, 80, gradient([
     (1.00, (0x00, 0x11, 0x33), (0x00, 0x55, 0x77)),
 ]))
+
+
+# hsv example
+
+from colorsys import hsv_to_rgb
+
+write_png("example6.png", 200, 40, gradient([
+    (0.5, hsv_to_rgb(0.55, 0.4, 122), hsv_to_rgb(0.55, 0.4, 161)),
+    (1.0, hsv_to_rgb(0.55, 0.4, 143), hsv_to_rgb(0.55, 0.4, 175)),
+]))
