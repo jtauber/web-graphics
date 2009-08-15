@@ -1,0 +1,7 @@
+A set of tools for programmatically creating website graphics for things
+like gradients and textures.
+
+The original version was described in this blog post:
+
+http://jtauber.com/blog/2008/05/18/creating_gradients_programmatically_in_python/
+
