@@ -19,7 +19,7 @@ def get_data(width, height, rgb_func):
         fy = float(y)
         for x in range(width):
             fx = float(x)
-            data.extend([int(v * 255) for v in rgb_func(fx / fw, fy / fh)])
+            data.extend([min(255, max(0, int(v * 255))) for v in rgb_func(fx / fw, fy / fh)])
     compressed = compressor.compress(data.tostring())
     flushed = compressor.flush()
     return compressed + flushed
