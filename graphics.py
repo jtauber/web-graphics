@@ -2,6 +2,7 @@ import zlib
 import struct
 import array
 import random
+import colorsys
 
 def output_chunk(out, chunk_type, data):
     out.write(struct.pack("!I", len(data)))
@@ -54,6 +55,10 @@ def GAUSSIAN(sigma):
         d = random.gauss(0, sigma)
         return r + d, g + d, b + d
     return add_noise
+
+def HSV(h, s, v):
+    r, g, b = colorsys.hsv_to_rgb(h, s, v)
+    return 255 * r, 255 * g, 255 * b
 
 def gradient(value_func, noise_func, DATA):
     def gradient_function(x, y):
