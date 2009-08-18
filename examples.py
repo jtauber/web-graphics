@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from graphics import write_png, gradient, LINEAR_X, LINEAR_Y, RADIAL, NO_NOISE, GAUSSIAN
+from graphics import write_png, gradient, LINEAR_X, LINEAR_Y, RADIAL, NO_NOISE, GAUSSIAN, HSV
 
 ## EXAMPLES
 
@@ -43,11 +43,9 @@ write_png("example6.png", 50, 80, gradient(LINEAR_Y, NO_NOISE, [
 
 # hsv example
 
-from colorsys import hsv_to_rgb
-
 write_png("example7.png", 200, 40, gradient(LINEAR_Y, NO_NOISE, [
-    (0.5, hsv_to_rgb(0.55, 0.4, 122), hsv_to_rgb(0.55, 0.4, 161)),
-    (1.0, hsv_to_rgb(0.55, 0.4, 143), hsv_to_rgb(0.55, 0.4, 175)),
+    (0.5, HSV(0.55, 0.2, 0.40), HSV(0.55, 0.2, 0.54)),
+    (1.0, HSV(0.55, 0.2, 0.47), HSV(0.55, 0.2, 0.61)),
 ]))
 
 
@@ -76,4 +74,9 @@ write_png("example11.png", 960, 200, gradient(RADIAL(0.5, 0.0), GAUSSIAN(0.01), 
 write_png("example12.png", 5000, 50, gradient(LINEAR_X, GAUSSIAN(0.005), [
     (0.40, (0x00, 0x00, 0x00), (0x00, 0x00, 0x00)),
     (0.59, (0x00, 0x00, 0x00), (0x1B, 0x1C, 0x1E)),
+]))
+
+
+write_png("example13.png", 100, 500, gradient(LINEAR_Y, GAUSSIAN(0.01), [
+    (0.3, HSV(0.6, 0.75, 0.1), HSV(0.6, 0.75, 0.2)),
 ]))
