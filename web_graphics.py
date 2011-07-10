@@ -9,7 +9,7 @@ def output_chunk(out, chunk_type, data):
     out.write(chunk_type)
     out.write(data)
     checksum = zlib.crc32(data, zlib.crc32(chunk_type))
-    out.write(struct.pack("!I", checksum))
+    out.write(struct.pack("!i", checksum))
 
 def get_data(width, height, rgb_func):
     fw = float(width)
