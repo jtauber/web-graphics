@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from graphics import write_png, gradient, LINEAR_X, LINEAR_Y, RADIAL, NO_NOISE, GAUSSIAN, HSV
+from web_graphics import write_png, gradient, LINEAR_X, LINEAR_Y, RADIAL, NO_NOISE, GAUSSIAN, HSV
 
 ## EXAMPLES
 
