@@ -70,11 +70,22 @@ def HSV(h, s, v):
     return 255 * r, 255 * g, 255 * b
 
 
+def hexstring_to_rgb(s):
+    r = int(s[1:3], 16)
+    g = int(s[3:5], 16)
+    b = int(s[5:7], 16)
+    return r, g, b
+
+
 def gradient(value_func, noise_func, DATA):
     def gradient_function(x, y):
         initial_offset = 0.0
         v = value_func(x, y)
         for offset, start, end in DATA:
+            if isinstance(start, str) and start.startswith("#"):
+                start = hexstring_to_rgb(start)
+            if isinstance(end, str) and end.startswith("#"):
+                end = hexstring_to_rgb(end)
             if v < offset:
                 r = linear_gradient(start[0], end[0], initial_offset, offset)(v)
                 g = linear_gradient(start[1], end[1], initial_offset, offset)(v)
