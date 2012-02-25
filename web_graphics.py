@@ -4,12 +4,14 @@ import array
 import random
 import colorsys
 
+
 def output_chunk(out, chunk_type, data):
     out.write(struct.pack("!I", len(data)))
     out.write(chunk_type)
     out.write(data)
     checksum = zlib.crc32(data, zlib.crc32(chunk_type))
     out.write(struct.pack("!i", checksum))
+
 
 def get_data(width, height, rgb_func):
     fw = float(width)
@@ -26,6 +28,7 @@ def get_data(width, height, rgb_func):
     flushed = compressor.flush()
     return compressed + flushed
 
+
 def write_png(filename, width, height, rgb_func):
     out = open(filename, "w")
     out.write(struct.pack("8B", 137, 80, 78, 71, 13, 10, 26, 10))
@@ -38,17 +41,22 @@ def write_png(filename, width, height, rgb_func):
 def linear_gradient(start_value, stop_value, start_offset=0.0, stop_offset=1.0):
     return lambda offset: (start_value + ((offset - start_offset) / (stop_offset - start_offset) * (stop_value - start_value))) / 255.0
 
+
 def LINEAR_Y(x, y):
     return y
+
 
 def LINEAR_X(x, y):
     return x
 
+
 def RADIAL(center_x, center_y):
     return lambda x, y: (x - center_x) ** 2 + (y - center_y) ** 2
 
+
 def NO_NOISE(r, g, b):
     return r, g, b
+
 
 def GAUSSIAN(sigma):
     def add_noise(r, g, b):
@@ -56,9 +64,11 @@ def GAUSSIAN(sigma):
         return r + d, g + d, b + d
     return add_noise
 
+
 def HSV(h, s, v):
     r, g, b = colorsys.hsv_to_rgb(h, s, v)
     return 255 * r, 255 * g, 255 * b
+
 
 def gradient(value_func, noise_func, DATA):
     def gradient_function(x, y):
