@@ -30,7 +30,7 @@ def get_data(width, height, rgb_func):
 
 
 def write_png(filename, width, height, rgb_func):
-    out = open(filename, "w")
+    out = open(filename, "wb")
     out.write(struct.pack("8B", 137, 80, 78, 71, 13, 10, 26, 10))
     output_chunk(out, "IHDR", struct.pack("!2I5B", width, height, 8, 2, 0, 0, 0))
     output_chunk(out, "IDAT", get_data(width, height, rgb_func))
